@@ -40,7 +40,7 @@ openssl rand -hex 16 > db/serial
 echo 1001 > db/crlnumber
 
 openssl req -new \
--config sub-ca.conf \
+-config sub-ca.config \
 -out sub-ca.csr \
 -keyout private/sub-ca.key
 
@@ -53,7 +53,7 @@ CSRをroot-caにコピーしてroot-ca署名する。
 cp sub-ca.csr ../root-ca/
 cd ../root-ca
 openssl ca \
--config root-ca.conf \
+-config root-ca.config \
 -in sub-ca.csr \
 -out sub-ca.crt \
 -extensions sub_ca_ext
