@@ -61,10 +61,12 @@ cp sub-ca.srt ../sub-ca/
 ```
 
 ### サーバ証明書の発行方法
-鍵と証明書発行要求を作成し、sub-caにコピーする。
+鍵と証明書発行要求を作成し、sub-caにコピーする。  
+ついでに秘密鍵のパスフレーズを解除する。
 ```
 cd www
 openssl genrsa -aes128 -out server.key 2048
+openssl rsa in server.key -out server.key 
 openssl req -new -key server.key -out server.csr -addext 'subjectAltName = IP:192.168.0.1,DNS:example.jp'
 cp server.csr ../sub-ca/
 ```
